@@ -256,11 +256,12 @@ export default {
     display: inline-block;
     width: 1px;
     height: calc(100% - 37px - 34px);
-    margin: 0 8px;
     margin-top: 37px;
     vertical-align: middle;
   }
   .el-divider + .side-bar-toc {
+    padding-left: 8px;
     padding-right: 8px;
+    flex: 1;
   }
 </style>
