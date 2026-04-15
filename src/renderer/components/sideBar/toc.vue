@@ -95,6 +95,11 @@ export default {
         fill: var(--themeColor);
       }
     }
+    & .el-tree-node__label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   .side-bar-toc-overflow {
     overflow: auto;
