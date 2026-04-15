@@ -10,7 +10,8 @@ export const sideBarIcons = [
   }, {
     name: 'search',
     icon: SearchIcon
-  }, {
+  },
+  {
     name: 'toc',
     icon: TocIcon
   }
@@ -20,5 +21,12 @@ export const sideBarBottomIcons = [
   {
     name: 'settings',
     icon: SettingIcon
+  }
+]
+
+export const switchBarList = [
+  {
+    name: 'toc',
+    icon: TocIcon
   }
 ]

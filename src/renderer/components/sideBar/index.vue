@@ -6,18 +6,32 @@
     :style="[ !rightColumn ? { 'min-width': '45px' } : {}, { 'width': `${finalSideBarWidth}px` } ]"
   >
     <div class="left-column">
-      <ul>
-        <li
-          v-for="(c, index) of sideBarIcons"
-          :key="index"
-          @click="handleLeftIconClick(c.name)"
-          :class="{ 'active': c.name === rightColumn }"
-        >
-          <svg :viewBox="c.icon.viewBox">
-            <use :xlink:href="c.icon.url"></use>
-          </svg>
-        </li>
-      </ul>
+      <div>
+        <ul>
+          <li
+            v-for="(c, index) of sideBarIcons"
+            :key="index"
+            @click="handleLeftIconClick(c.name)"
+            :class="{ 'active': c.name === rightColumn }"
+          >
+            <svg :viewBox="c.icon.viewBox">
+              <use :xlink:href="c.icon.url"></use>
+            </svg>
+          </li>
+        </ul>
+        <ul>
+          <li
+            v-for="(c, index) of switchBarList"
+            :key="index"
+            @click="handleLeftSwitchClick(c.name)"
+            :class="{ 'active': showToc }"
+          >
+            <svg :viewBox="c.icon.viewBox">
+              <use :xlink:href="c.icon.url"></use>
+            </svg>
+          </li>
+        </ul>
+      </div>
       <ul class="bottom">
         <li
           v-for="(c, index) of sideBarBottomIcons"
@@ -31,25 +45,29 @@
       </ul>
     </div>
     <div class="right-column" v-show="rightColumn">
-      <tree
-        :project-tree="projectTree"
-        :opened-files="openedFiles"
-        :tabs="tabs"
-        v-if="rightColumn === 'files'"
-      ></tree>
-      <side-bar-search
-        v-else-if="rightColumn === 'search'"
-      ></side-bar-search>
-      <toc
-        v-else-if="rightColumn === 'toc'"
-      ></toc>
+      <div class="right-column-left">
+        <tree
+          :project-tree="projectTree"
+          :opened-files="openedFiles"
+          :tabs="tabs"
+          v-if="rightColumn === 'files'"
+        ></tree>
+        <side-bar-search
+          v-else-if="rightColumn === 'search'"
+        ></side-bar-search>
+        <toc
+          v-else-if="rightColumn === 'toc'"
+        ></toc>
+      </div>
+      <div v-show="showToc" class="el-divider"></div>
+      <toc v-show="showToc"></toc>
     </div>
     <div class="drag-bar" ref="dragBar" v-show="rightColumn"></div>
   </div>
 </template>
 
 <script>
-import { sideBarIcons, sideBarBottomIcons } from './help'
+import { sideBarIcons, sideBarBottomIcons, switchBarList } from './help'
 import Tree from './tree.vue'
 import SideBarSearch from './search.vue'
 import Toc from './toc.vue'
@@ -59,6 +77,7 @@ export default {
   data () {
     this.sideBarIcons = sideBarIcons
     this.sideBarBottomIcons = sideBarBottomIcons
+    this.switchBarList = switchBarList
     return {
       openedFiles: [],
       sideBarViewWidth: 280
@@ -75,7 +94,8 @@ export default {
       showSideBar: state => state.layout.showSideBar,
       projectTree: state => state.project.projectTree,
       sideBarWidth: state => state.layout.sideBarWidth,
-      tabs: state => state.editor.tabs
+      tabs: state => state.editor.tabs,
+      showToc: state => state.layout.showToc
     }),
     finalSideBarWidth () {
       const { showSideBar, rightColumn, sideBarViewWidth } = this
@@ -132,6 +152,11 @@ export default {
     handleLeftBottomClick (name) {
       if (name === 'settings') {
         this.$store.dispatch('OPEN_SETTING_WINDOW')
+      }
+    },
+    handleLeftSwitchClick (name) {
+      if (name === 'toc') {
+        this.$store.commit('SHOW_TOC', 'showToc')
       }
     }
   }
@@ -204,8 +229,14 @@ export default {
   }
   .right-column {
     flex: 1;
+    display: flex;
     width: calc(100% - 50px);
     overflow: hidden;
+  }
+  .right-column-left {
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
   }
   .drag-bar {
     position: absolute;
@@ -218,5 +249,18 @@ export default {
     &:hover {
       border-right: 2px solid var(--iconColor);
     }
+  }
+  .el-divider {
+    background-color: var(--sideBarColor);
+    position: relative;
+    display: inline-block;
+    width: 1px;
+    height: calc(100% - 37px - 34px);
+    margin: 0 8px;
+    margin-top: 37px;
+    vertical-align: middle;
+  }
+  .el-divider + .side-bar-toc {
+    padding-right: 8px;
   }
 </style>

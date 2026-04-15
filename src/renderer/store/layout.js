@@ -9,7 +9,8 @@ const state = {
   rightColumn: 'files',
   showSideBar: false,
   showTabBar: false,
-  sideBarWidth
+  sideBarWidth,
+  showToc: true // 是否总是显示目录
 }
 
 const getters = {}
@@ -29,6 +30,9 @@ const mutations = {
     // TODO: Add side bar to session (GH#732).
     localStorage.setItem('side-bar-width', Math.max(+width, 220))
     state.sideBarWidth = width
+  },
+  SHOW_TOC (state, entryName) {
+    state[entryName] = !state[entryName]
   }
 }
 
