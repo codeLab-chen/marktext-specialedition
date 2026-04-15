@@ -38,7 +38,7 @@
       <div v-show="rightColumn && showToc" class="el-divider"></div>
       <toc v-show="showToc"></toc>
     </div>
-    <div class="drag-bar" ref="dragBar" v-show="rightColumn"></div>
+    <div class="drag-bar" ref="dragBar" v-show="rightColumn || showToc"></div>
   </div>
 </template>
 
