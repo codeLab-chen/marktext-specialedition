@@ -184,6 +184,8 @@ export default {
     transform: translateX(-50px);
   }
   .tree-view {
+    padding-left: 2px;
+    padding-right: 8px;
     font-size: 14px;
     color: var(--sideBarColor);
     display: flex;
