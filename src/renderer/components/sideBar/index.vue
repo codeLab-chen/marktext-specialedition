@@ -253,7 +253,8 @@ export default {
   position: relative;
   display: inline-block;
   width: 1px;
-  height: calc(100% - 37px - 34px);
+  /* height: calc(100% - 37px - 34px); */
+  height: calc(100% - 37px);
   margin-top: 37px;
   vertical-align: middle;
 }

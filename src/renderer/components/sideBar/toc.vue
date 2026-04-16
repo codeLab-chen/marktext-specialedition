@@ -52,7 +52,6 @@ export default {
 
 <style>
   .side-bar-toc {
-    height: calc(100% - 35px);
     margin: 0;
     padding: 0;
     list-style: none;
