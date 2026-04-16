@@ -51,6 +51,7 @@ extraFiles:
 - from: "resources/THIRD-PARTY-LICENSES.txt"
   to: "THIRD-PARTY-LICENSES.txt"
 afterPack: './.electron-vue/electron-builder/afterPack.js'
+beforeBuild: './.electron-vue/electron-builder/beforeBuild.js'
 
 fileAssociations:
 - ext:
@@ -88,9 +89,9 @@ win:
   icon: "resources/icons/icon.ico"
   target:
   - target: "nsis"
-    arch: [x64]
+    arch: [ia32, x64]
   - target: "zip"
-    arch: [x64]
+    arch: [ia32, x64]
   requestedExecutionLevel: "asInvoker"
 nsis:
   artifactName: "marktext-setup.${ext}"
