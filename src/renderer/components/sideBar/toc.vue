@@ -5,6 +5,7 @@
   >
     <div class="title">Table Of Contents</div>
     <el-tree
+      class="toc-tree"
       v-if="toc.length"
       :data="toc"
       :default-expand-all="true"
@@ -61,6 +62,7 @@ export default {
       color: var(--sideBarTitleColor);
       font-weight: 600;
       font-size: 16px;
+      line-height: 26px;
       margin: 37px 0 10px 0;
       padding-left: 25px;
     }
@@ -70,6 +72,8 @@ export default {
     & .el-tree {
       background: transparent;
       color: var(--sideBarColor);
+      height: calc(100% - 26px);
+      overflow-y: auto;
     }
     & .el-tree-node:focus > .el-tree-node__content {
       background-color: var(--sideBarItemHoverBgColor);
@@ -98,6 +102,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      padding-right: 6px;
     }
   }
   .side-bar-toc-overflow {
@@ -110,6 +115,11 @@ export default {
       white-space: normal;
       height: auto;
       min-height: 26px;
+    }
+  }
+  .toc-tree {
+    &::-webkit-scrollbar {
+      width: 8px!important;
     }
   }
 </style>
