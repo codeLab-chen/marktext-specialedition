@@ -127,7 +127,7 @@ kbd {
   #ag-editor-id {
     max-width: var(--editorAreaWidth);
     min-width: 400px;
-    min-height: 100%;
+    min-height: calc(100% - 8px);
     /* margin: 0 auto; */
     margin: 4px;
     /* padding: 20px 50px 100px 50px;*/

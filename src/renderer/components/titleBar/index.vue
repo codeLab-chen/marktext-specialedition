@@ -34,8 +34,9 @@
         <div
           v-if="showCustomTitleBar"
           class="frameless-titlebar-menu title-no-drag"
-          @click.stop="handleMenuClick"
-        >
+          @mouseenter="handleMenuClick"
+          >
+          <!-- @click.stop="handleMenuClick" -->
           <span class="text-center-vertical">&#9776;</span>
         </div>
         <el-tooltip
