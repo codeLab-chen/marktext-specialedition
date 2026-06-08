@@ -642,7 +642,7 @@ const actions = {
       dispatch('SEND_INITIALIZED')
       commit('SET_USER_PREFERENCE', { endOfLine: lineEnding })
       commit('SET_LAYOUT', {
-        rightColumn: 'files',
+        rightColumn: '',
         showSideBar: !!sideBarVisibility,
         showTabBar: !!tabBarVisibility
       })

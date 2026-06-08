@@ -78,7 +78,6 @@ const actions = {
     ipcRenderer.on('mt::open-directory', (e, pathname) => {
       commit('SET_ROOT_DIRECTORY', pathname)
       commit('SET_LAYOUT', {
-        rightColumn: 'files',
         showSideBar: true,
         showTabBar: true
       })

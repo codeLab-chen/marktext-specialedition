@@ -34,6 +34,7 @@ notes:"Requires restart."|notes:"需要重新启动。"
 "Sort field for files in open folders"|"打开文件夹时文件的排序字段"
 
 ("Action on startup:")|("启动时的动作:")
+("Restore last editor session")|("打开上一次编辑会话")
 ("Open the default directory")|("打开默认目录")
 ("Open a blank page")|("打开一个空白页")
 ("Select Folder")|("选择文件夹")

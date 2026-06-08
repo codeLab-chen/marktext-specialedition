@@ -6,7 +6,7 @@ const sideBarWidth = typeof +width === 'number' ? Math.max(+width, 220) : 280
 
 // messages from main process, and do not change the state
 const state = {
-  rightColumn: 'files',
+  rightColumn: '',
   showSideBar: false,
   showTabBar: false,
   sideBarWidth,

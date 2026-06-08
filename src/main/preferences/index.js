@@ -87,9 +87,17 @@ class Preference extends EventEmitter {
           this.store.set(userSetting)
         }
       }
+
+      this._migrateUserSettings(defaultSettings, userSetting)
     }
 
     this._listenForIpcMain()
+  }
+
+  _migrateUserSettings (defaultSettings, userSetting) {
+    if (defaultSettings.sideBarVisibility === true && userSetting.sideBarVisibility === false) {
+      this.store.set('sideBarVisibility', true)
+    }
   }
 
   getAll () {

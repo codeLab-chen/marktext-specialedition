@@ -3,6 +3,7 @@ import { BrowserWindow, dialog, ipcMain } from 'electron'
 import { enable as remoteEnable } from '@electron/remote/main'
 import log from 'electron-log'
 import windowStateKeeper from 'electron-window-state'
+import { electronLocalshortcut } from '@hfelix/electron-localshortcut'
 import { isChildOfDirectory, isSamePathSync } from 'common/filesystem/paths'
 import BaseWindow, { WindowLifecycle, WindowType } from './base'
 import { ensureWindowPosition, zoomIn, zoomOut } from './utils'
@@ -204,6 +205,13 @@ class EditorWindow extends BaseWindow {
 
     // Disable application menu shortcuts because we want to handle key bindings ourself.
     win.webContents.setIgnoreMenuShortcuts(true)
+
+    // Register F12 to toggle DevTools in debug mode.
+    if (env.debug) {
+      electronLocalshortcut.register(win, 'F12', () => {
+        win.webContents.toggleDevTools()
+      })
+    }
 
     // Delay load files and directories after the current control flow.
     setTimeout(() => {

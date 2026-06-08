@@ -61,7 +61,7 @@ const state = {
   spellcheckerLanguage: 'en-US',
 
   // Default values that are overwritten with the entries below.
-  sideBarVisibility: false,
+  sideBarVisibility: true,
   tabBarVisibility: false,
   sourceCodeModeEnabled: false,
 
